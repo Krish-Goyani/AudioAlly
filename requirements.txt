@@ -1,0 +1,8 @@
+gradio
+datasets
+transformers
+torch
+huggingface_hub
+requests
+torchaudio
+sentencepiece
