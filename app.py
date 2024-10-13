@@ -11,6 +11,7 @@ from datasets import load_dataset
 import torchaudio
 import os 
 
+HF_API_TOKEN = os.getenv("HF_API_TOKEN")
 
 #below is the transcriber pipeline that loads whisper model
 transcriber = pipeline(
@@ -26,8 +27,7 @@ def transcribe(audio):
 #uses hosted api of Llama-3 model gives response
 def query(text, model_id="meta-llama/Meta-Llama-3-8B-Instruct"):
     api_url = f"https://api-inference.huggingface.co/models/{model_id}"
-    hf_folder = HfFolder()
-    headers = {"Authorization": f"Bearer {hf_folder.get_token()}"}
+    headers = {"Authorization": f"Bearer {HF_API_TOKEN}"}
     payload = {"inputs": text}
 
     print(f"Querying...: {text}")
