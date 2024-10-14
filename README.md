@@ -1,6 +1,6 @@
-# SpeechGenie
+# AudioAlly
 
-**SpeechGenie** is an application that allows users to ask questions through their microphone and receive audio responses. This project utilizes advanced speech processing models to seamlessly convert spoken questions into spoken answers.
+**AudioAlly** is an application that allows users to ask questions through their microphone and receive audio responses. This project utilizes advanced speech processing models to seamlessly convert spoken questions into spoken answers.
 
 ## Features
 
@@ -19,7 +19,7 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Krish-Goyani/SpeechGenie.git
+   git clone https://github.com/Krish-Goyani/AudioAlly.git
    ```
 2. Navigate to the project directory:
    ```bash
