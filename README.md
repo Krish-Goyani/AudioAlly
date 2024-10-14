@@ -19,7 +19,7 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/speechgenie.git
+   git clone https://github.com/Krish-Goyani/SpeechGenie.git
    ```
 2. Navigate to the project directory:
    ```bash
