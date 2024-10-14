@@ -2,16 +2,17 @@ from warnings import filterwarnings
 filterwarnings("ignore")
 from transformers import pipeline
 import torch
-device = "cuda:0" if torch.cuda.is_available() else "cpu"
 import gradio as gr
 from huggingface_hub import HfFolder
 import requests
 from transformers import SpeechT5Processor, SpeechT5ForTextToSpeech, SpeechT5HifiGan
 from datasets import load_dataset
+from google.colab import userdata
 import torchaudio
-import os 
+import os
 
-HF_API_TOKEN = os.getenv("HF_API_TOKEN")
+device = "cuda:0" if torch.cuda.is_available() else "cpu"
+HF_API_TOKEN = userdata.get('HF_TOKEN')
 
 #below is the transcriber pipeline that loads whisper model
 transcriber = pipeline(
@@ -37,7 +38,7 @@ def query(text, model_id="meta-llama/Meta-Llama-3-8B-Instruct"):
 
 
 
-#below loads text to speech models and vocoders 
+#below loads text to speech models and vocoders
 processor = SpeechT5Processor.from_pretrained("microsoft/speecht5_tts")
 model = SpeechT5ForTextToSpeech.from_pretrained("microsoft/speecht5_tts").to(device)
 vocoder = SpeechT5HifiGan.from_pretrained("microsoft/speecht5_hifigan").to(device)
@@ -58,7 +59,7 @@ def tts(text):
     # Generate speech
     with torch.no_grad():
         speech = model.generate_speech(input_ids,speaker_embeddings.to(device),  vocoder=vocoder)
-    
+
     # Move the tensor to the CPU and ensure it has the correct shape
     speech = speech.squeeze().cpu()
     if len(speech.shape) == 1:
@@ -66,7 +67,7 @@ def tts(text):
     # Save the output to a temporary file
     output_path = "output.wav"
     torchaudio.save(output_path, speech, sample_rate=16000)
-    
+
     return output_path
 
 #main function that calls other 3 functions
@@ -75,8 +76,8 @@ def STT(audio):
   response = query(text)
   audio =  tts(response)
   return audio
-    
-#gradio interface works as frontend 
+
+#gradio interface works as frontend
 stt_gradio = gr.Interface(
     fn=STT,
     inputs=gr.Audio(sources="microphone", type="filepath", label="Speak your question"),
