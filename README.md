@@ -12,8 +12,8 @@
 
 - [Whisper](https://openai.com/blog/whisper) - for speech-to-text conversion.
 - [Gradio](https://www.gradio.app) - for creating the user interface.
-- [Llama 3](https://ai.facebook.com/blog/large-language-model-llama) - for generating answers from text-based questions.
-- [Microsoft's Speech-to-Text](https://azure.microsoft.com/en-us/services/cognitive-services/speech-to-text/) - for converting text responses back into audio.
+- [Llama 3](https://ai.meta.com/) - for generating answers from text-based questions.
+- [Microsoft's Speech-to-Text](https://huggingface.co/microsoft/speecht5_tts) - for converting text responses back into audio.
 
 ## Installation Instructions
 
