@@ -7,12 +7,13 @@ from huggingface_hub import HfFolder
 import requests
 from transformers import SpeechT5Processor, SpeechT5ForTextToSpeech, SpeechT5HifiGan
 from datasets import load_dataset
-from google.colab import userdata
 import torchaudio
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
-HF_API_TOKEN = userdata.get('HF_TOKEN')
+HF_API_TOKEN = os.getenv('HF_TOKEN')
 
 #below is the transcriber pipeline that loads whisper model
 transcriber = pipeline(
